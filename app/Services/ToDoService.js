@@ -10,21 +10,36 @@ class ToDoService {
   async SyncLists() {
     try {
       const res = await sandboxApi.get('Lucas/todos')
-      console.log(res.data)
       ProxyState.ToDoList = res.data.map(p => new ToDo(p))
-      console.log(ProxyState.ToDoList)
 
     } catch (error) {
       console.error(error)
     }
   }
-  async Console() {
-    try {
-      const rez = await sandboxApi.get('Lucas/todos')
-      console.log(rez)
-    } catch (error) {
-      console.error(error)
+
+  async AddToDo(description) {
+    console.log(description)
+    const res = await sandboxApi.post('Lucas/todos', description)
+    const NewToDo = new ToDo(res.data)
+    ProxyState.ToDoList = [...ProxyState.ToDoList, NewToDo]
+    console.log(NewToDo)
+    console.log(ProxyState.ToDoList)
+  }
+
+  async DeleteToDo(id) {
+    if (window.confirm('Are You Sure About That')) {
+      await sandboxApi.delete('Lucas/todos/' + id)
+      ProxyState.ToDoList = ProxyState.ToDoList.filter(ToDo => ToDo.id != id)
     }
   }
+
+  async CompleteToDo(id) {
+    const ToDo = ProxyState.ToDoList.find(t => t.id == id)
+    ToDo.completed = !ToDo.completed
+    const res = await sandboxApi.put('Lucas/todos/' + ToDo.id, ToDo)
+    ProxyState.ToDoList = ProxyState.ToDoList
+    console.log(ProxyState.ToDoList)
+  }
 }
+
 export const toDoService = new ToDoService()

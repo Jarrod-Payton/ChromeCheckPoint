@@ -3,8 +3,12 @@ import { isValidProp } from "./Utils/isValidProp.js"
 
 class AppState extends EventEmitter {
 
+  ActiveImage = {}
+
   ToDoList = []
 
+  ActiveWeather = {}
+  Switch = true
 }
 
 export const ProxyState = new Proxy(new AppState(), {
