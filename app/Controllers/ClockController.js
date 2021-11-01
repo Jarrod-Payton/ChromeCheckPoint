@@ -12,6 +12,7 @@ function Clock() {
 
 export class ClockController {
   constructor() {
+    this.Update()
   }
 
   Update() {

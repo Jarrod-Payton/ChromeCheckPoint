@@ -17,6 +17,7 @@ export class ToDoController {
     let forminfo = window.event.target
     let ToDo = { description: forminfo.Description.value }
     toDoService.AddToDo(ToDo)
+    forminfo.reset()
   }
 
   DeleteToDo(id) {

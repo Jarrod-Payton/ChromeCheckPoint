@@ -4,11 +4,12 @@ import { imageService } from "../Services/ImageService.js"
 function _RenderPage() {
   let template = ''
   template += ProxyState.ActiveImage.Template
-  document.getElementById('img').innerHTML = template
+  let image = document.getElementById('img')
+  image.style = template
 }
 export class ImageController {
   constructor() {
-    ProxyState.on('ActiveImage', _RenderPage())
+    ProxyState.on('ActiveImage', _RenderPage)
     imageService.Load()
   }
 
