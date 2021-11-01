@@ -18,12 +18,9 @@ class ToDoService {
   }
 
   async AddToDo(description) {
-    console.log(description)
     const res = await sandboxApi.post('Lucas/todos', description)
     const NewToDo = new ToDo(res.data)
     ProxyState.ToDoList = [...ProxyState.ToDoList, NewToDo]
-    console.log(NewToDo)
-    console.log(ProxyState.ToDoList)
   }
 
   async DeleteToDo(id) {
@@ -38,7 +35,6 @@ class ToDoService {
     ToDo.completed = !ToDo.completed
     const res = await sandboxApi.put('Lucas/todos/' + ToDo.id, ToDo)
     ProxyState.ToDoList = ProxyState.ToDoList
-    console.log(ProxyState.ToDoList)
   }
 }
 
