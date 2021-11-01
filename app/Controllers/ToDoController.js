@@ -30,4 +30,8 @@ export class ToDoController {
     console.log('ToDoController is linked through button')
     toDoService.Console()
   }
+
+  Draw() {
+    _drawToDo
+  }
 }

@@ -26,6 +26,7 @@ export class WeatherController {
     ProxyState.on('Switch', _weatherUpdate)
   }
   Update() {
+    console.log('weather')
     _weatherUpdate()
   }
 

@@ -1,1 +1,9 @@
 /* BASIC STYLES HERE */
+
+.unhiddening{
+  display: none
+}
+
+.hovering:hover + .unhiddening{
+  display:block;
+}

@@ -1,9 +1,12 @@
 import { ProxyState } from "../AppState.js";
 import { Image } from "../Models/Image.js";
+import { sandboxApi } from "./Axios.js"
 
 class ImageService {
-  constructor() {
-    console.log('Service Connected')
+  async Load() {
+    const res = await sandboxApi.get('images')
+    const image = new Image(res.data)
+    ProxyState.ActiveImage = image
   }
 }
 
